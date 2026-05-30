@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DArk: Echo Sector - Tactical Flashlight Matrix</title>
+    <link rel="stylesheet"
+      href="style.css">
+</head>
+<body>
+    <div id="canvas-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="hud-overlay">
+            <div class="hud-stat-container">
+                <div class="hud-label">Chassis Integrity</div>
+                <div class="hud-value"><span id="hud-hp">70</span> / 100</div>
+                <div class="bar-bg"><div id="hud-hp-fill" class="bar-fill"></div></div>
+            </div>
+            <div class="hud-stat-container">
+                <div class="hud-label">Nano-Latch Balance</div>
+                <div class="hud-value" style="color: #cc9629;" id="hud-credits">4500L</div>
+            </div>
+            <div class="hud-stat-container">
+                <div class="hud-label">Tactical Score</div>
+                <div class="hud-value" style="font-size: 16px; color: #bfa9c4;" id="hud-score">12500</div>
+            </div>
+            <div class="hud-stat-container">
+                <div class="hud-label">Shield Matrix</div>
+                <div id="hud-shield-status">Deflector Off</div>
+            </div>
+        </div>
+        <div id="controls-hint">
+            [W,A,S,D] Move Corridors | [Mouse] Pivot Flashlight Torch & Weapon Pointer Axis<br>
+            [Left Click] Discharge Weapon System | [Space] Deploy Shield Matrix (Costs 500L)<br>
+            [M] Open Marketplace Terminal | [P] Toggle Engine Simulation Pause Loop
+        </div>
+        <div id="shop-modal">
+            <div class="menu-box" style="text-align: center;">
+                <div class="menu-title">Echo Sector Marketplace</div>
+                <p class="menu-text">Spend localized nano-latch balances to upgrade system capabilities.</p>
+                <div style="font-size: 16px; margin-bottom: 12px; color:#fff;">Available Balance: <span id="shop-credits" style="color:#cc9629;">4500L</span></div>  
+                <div class="shop-grid">
+                    <div class="shop-item" onclick="purchaseUpgrade('hp')">
+                        <div class="shop-item-name">Inject Nanite Core Repair (+30 HP)</div>
+                        <div class="shop-item-cost">Cost: 1000L</div>
+                    </div>
+                    <div class="shop-item" onclick="purchaseUpgrade('dmg')">
+                        <div class="shop-item-name">Overclock Kinetic Dampeners (+25% Dmg)</div>
+                        <div class="shop-item-cost">Cost: 2000L</div>
+                    </div>
+                    <div class="shop-item" onclick="purchaseUpgrade('speed')">
+                        <div class="shop-item-name">Actuator Overdrive Engine (+15% Speed)</div>
+                        <div class="shop-item-cost">Cost: 1500L</div>
+                    </div>
+                    <div class="shop-item" onclick="purchaseUpgrade('burst')">
+                        <div class="shop-item-name">Unlock Tri-Burst Spread Weapon Mod</div>
+                        <div class="shop-item-cost">Cost: 3000L</div>
+                    </div>
+                </div>
+                <button class="btn" onclick="toggleShopTerminal()">Resume Operation</button>
+            </div>
+        </div>
+        <div id="screen-overlay">
+            <div class="menu-box" id="menu-content">
+                <div class="menu-title" id="screen-title">DArk : Echo Sector</div>
+                <p class="menu-text" id="screen-desc">
+                    An advanced top-down simulation environment. The entire sector network is hidden in complete darkness. You must navigate using your forward flashlight sweep matrix to eliminate defense drones.
+                </p>  
+                <div id="briefing-elements">
+                    <div class="section-header">Operational Rules</div>
+                    <ul class="rules-list">
+                        <li><strong>Inverted Deployment:</strong> The player resides on the OUTSIDE corridors. All enemies are locked INSIDE the boxes.</li>
+                        <li><strong>Airtight Wall Hulls:</strong> Rooms are color-coded in solid Green. Projectiles bounce off interior/exterior hulls completely.</li>
+                        <li><strong>Aperture Mechanics:</strong> Every box has an opening. Bullets can only cross into or out of boxes by passing completely through these Yellow openings!</li>
+                    </ul>
+                    <div class="section-header">Control Matrix Mapping</div>
+                    <ul class="rules-list">
+                        <li><strong>[W, A, S, D] Keys:</strong> Traverse through grid channels.</li>
+                        <li><strong>[Mouse Position]:</strong> Aim weapon nozzle and light vector.</li>
+                        <li><strong>[Left Mouse Click]:</strong> Discharge ricocheting ammunition lines.</li>
+                        <li><strong>[Spacebar]:</strong> Burn 500L to flash-charge an interactive shield buffer.</li>
+                    </ul>
+                </div>
+                <div class="btn-container">
+                    <button class="btn" id="screen-btn" onclick="handleScreenSystemAction()">Initialize Runtime Sequence</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <script src="game.js"></script>
+</body>
+</html>
